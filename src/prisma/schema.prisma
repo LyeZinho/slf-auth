@@ -34,6 +34,12 @@ model User {
   pronouns  String?
   username  String?
 
+  // Connection info
+  discordId String?
+  googleId  String?
+  githubId  String?
+  twitterId String?
+
   // Config
   isVerified Boolean @default(false)
   isAdmin    Boolean @default(false)

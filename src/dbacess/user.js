@@ -16,6 +16,12 @@ model User {
   pronouns  String?
   username  String?
 
+  // Connection info
+  discordId String?
+  googleId  String?
+  githubId  String?
+  twitterId String?
+
   // Config
   isVerified Boolean @default(false)
   isAdmin    Boolean @default(false)
@@ -69,8 +75,6 @@ model User {
 
   // Opposite relation field
   sessions Session[]
-  Can you create an strong and robust crud for this Prisma model in javascript
-using the good pratices of POO and solid principles?
 }
 */ 
 const { PrismaClient } = require('@prisma/client');
@@ -130,4 +134,40 @@ class UserRepository {
     }
 }
 
-module.exports = UserRepository;
+//Test
+
+function test() {
+    const userRepo = new UserRepository();
+
+    const user = {
+        name: 'Test User',
+        email: 'test@email.com',
+        userHash: 'testhash',
+    };
+
+    userRepo.createUser(user)
+        .then((createdUser) => {
+            console.log(createdUser);
+            return userRepo.getUserById(createdUser.id);
+        })
+        .then((foundUser) => {
+            console.log(foundUser);
+            return userRepo.updateUser(foundUser.id, { name: 'Updated User' });
+        })
+        // .then((updatedUser) => {
+        //     console.log(updatedUser);
+        //     return userRepo.deleteUser(updatedUser.id);
+        // })
+        // .then((deletedUser) => {
+        //     console.log(deletedUser);
+        // })
+        .catch((error) => {
+            console.error(error);
+        }
+    );
+}
+
+test();
+
+// module.exports = UserRepository;
+
