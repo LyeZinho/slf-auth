@@ -37,7 +37,7 @@ npm install
 
 ## Documentation
 
-For detailed information on how to use SLF-Auth in your project, refer to the [Documentation](https://github.com/your-username/slf-auth/wiki). The documentation includes step-by-step guides, API references, and code examples to help you make the most out of SLF-Auth.
+For detailed information on how to use SLF-Auth in your project, refer to the [Documentation](https://github.com/slf-auth/slf-auth/wiki). The documentation includes step-by-step guides, API references, and code examples to help you make the most out of SLF-Auth.
 
 ## Contributing
 
@@ -49,6 +49,6 @@ SLF-Auth is distributed under the [MIT License](LICENSE), making it free and ope
 
 ## Support
 
-If you encounter any issues or have questions related to SLF-Auth, you can reach out to us through our [Issue Tracker](https://github.com/your-username/slf-auth/issues).
+If you encounter any issues or have questions related to SLF-Auth, you can reach out to us through our [Issue Tracker](https://github.com/slf-auth/slf-auth/issues).
 
 Let's make the authentication process in web applications better, easier, and more secure together! Happy coding! 🚀
