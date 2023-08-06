@@ -26,8 +26,11 @@ git clone https://github.com/your-username/slf-auth.git
 
 ```bash
 cd slf-auth
-npm install
+yarn install 
 ```
+
+
+npx prisma migrate dev --name init
 
 3. **Configuration**: Customize the authentication settings and configurations as per your project requirements.
 
