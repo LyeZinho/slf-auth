@@ -51,7 +51,7 @@ To maintain a consistent codebase and ensure readability, please follow these gu
 
 ## Reporting Issues
 
-If you encounter any bugs, issues, or have suggestions for improvements, please submit them through our [Issue Tracker](https://github.com/your-username/slf-auth/issues). Include a detailed description and steps to reproduce the problem if applicable.
+If you encounter any bugs, issues, or have suggestions for improvements, please submit them through our [Issue Tracker](https://github.com/slf-auth/slf-auth/issues). Include a detailed description and steps to reproduce the problem if applicable.
 
 ## License
 
