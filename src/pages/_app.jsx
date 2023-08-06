@@ -9,7 +9,9 @@ function MyApp({ Component, pageProps }) {
         <meta name="description" content="slf-auth" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <div className="flex flex-col items-center justify-center">
+        <Component {...pageProps} />
+      </div>
     </div>
   )
 }

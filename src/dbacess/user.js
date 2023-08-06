@@ -108,6 +108,20 @@ class UserRepository {
         }
     }
 
+    // Dynamic query with model fields as params
+    // like: { email: 'email', userHash: 'userHash' }
+    async getUserByField(field, value) {
+        try {
+            const user = await this.prisma.user.findUnique({
+                where: { [field]: value },
+            });
+            return user;
+        } catch (error) {
+            console.error(error);
+            throw new Error('Could not find user');
+        }
+    }
+
     async updateUser(id, data) {
         try {
             const updatedUser = await this.prisma.user.update({
@@ -134,40 +148,5 @@ class UserRepository {
     }
 }
 
-//Test
-
-function test() {
-    const userRepo = new UserRepository();
-
-    const user = {
-        name: 'Test User',
-        email: 'test@email.com',
-        userHash: 'testhash',
-    };
-
-    userRepo.createUser(user)
-        .then((createdUser) => {
-            console.log(createdUser);
-            return userRepo.getUserById(createdUser.id);
-        })
-        .then((foundUser) => {
-            console.log(foundUser);
-            return userRepo.updateUser(foundUser.id, { name: 'Updated User' });
-        })
-        // .then((updatedUser) => {
-        //     console.log(updatedUser);
-        //     return userRepo.deleteUser(updatedUser.id);
-        // })
-        // .then((deletedUser) => {
-        //     console.log(deletedUser);
-        // })
-        .catch((error) => {
-            console.error(error);
-        }
-    );
-}
-
-test();
-
-// module.exports = UserRepository;
+module.exports = UserRepository;
 

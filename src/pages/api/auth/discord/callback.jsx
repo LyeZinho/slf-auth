@@ -19,7 +19,7 @@ export default async function handler(req, res) {
             grant_type: 'authorization_code',
             code,
             redirect_uri: discordRedirectUri,
-            scope: 'identify', // Add more scopes if needed
+            scope: 'email' // Add more scopes if needed
         })
     });
 
