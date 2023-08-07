@@ -33,7 +33,6 @@ export default function Login() {
 
       {/* Register card */}
       <div className="flex flex-col items-center justify-center rounded-lg bg-primary-700 text-primary-50 p-4 space-y-10 lg:w-96 md:w-2/3 sm:w-11/12">
-        
         {/* Go Back button */}
         <div className="flex flex-row items-left justify-center">
             <div className="flex flex-1 items-left justify-center">
@@ -47,7 +46,7 @@ export default function Login() {
                 </Button>
             </div>
         </div>
-        
+
         {/* Logo */}
         <div className="flex flex-col items-center justify-center">
           <Image
