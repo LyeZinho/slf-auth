@@ -6,6 +6,13 @@ function generateSalt() {
   return crypto.randomBytes(16).toString("hex");
 }
 
+// Gen random hash token
+function generateToken() {
+  let base = crypto.randomBytes(16).toString("hex");
+  let token = crypto.createHash("sha512").update(base).digest("hex");
+  return token;
+}
+
 // Generate hash
 function generateHash(content) {
   let salt = generateSalt();
@@ -71,6 +78,7 @@ function decrypt(encrypted, key) {
 
 module.exports = {
   generateHash,
+  generateToken,
   generateHashSalt,
   compareHash,
   encrypt,
