@@ -1,3 +1,6 @@
+<p align="center"><img src="https://raw.githubusercontent.com/slf-auth/slf-auth/main/src/public/assets/slf-auth.png" alt="lyezinho" /></a> 
+</p>
+
 # SLF-Auth - Open Source Authentication
 
 SLF-Auth is an open-source authentication project aimed at providing developers with a robust and easy-to-use system for implementing secure authentication in their web applications. This project offers a pre-made full REST API and secure authentication application built with React, enabling developers to integrate authentication functionalities seamlessly into their projects.
