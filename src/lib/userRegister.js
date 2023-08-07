@@ -1,6 +1,7 @@
 // Register
 import UserRepository from '../dbacess/user';
 import { generateHash } from './genhash';
+import { generateKeyPair } from './pkytpky';
 
 const userRepository = new UserRepository();
 
@@ -15,11 +16,15 @@ async function userRegister(username, password, email, confirmToken) {
         }
     }
     else {
+        const { publicKey, privateKey } = generateKeyPair();
+
         const user = await userRepository.createUser({
             email: email,
             userHash: hash,
             confirmToken: confirmToken,
             salt: salt,
+            publicKey: publicKey,
+            privateKey: privateKey,
         });
         return user;
     }

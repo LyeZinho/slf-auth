@@ -108,8 +108,6 @@ class UserRepository {
         }
     }
 
-    // Dynamic query with model fields as params
-    // like: { email: 'email', userHash: 'userHash' }
     async getUserByField(field, value) {
         try {
             const user = await this.prisma.user.findUnique({
@@ -119,6 +117,26 @@ class UserRepository {
         } catch (error) {
             console.error(error);
             throw new Error('Could not find user');
+        }
+    }
+
+    async getUserByCustomQuery(query) {
+        try {
+            const user = await this.prisma.user.findMany(query);
+            return user;
+        } catch (error) {
+            console.error(error);
+            throw new Error('Could not find user');
+        }
+    }
+    
+    async getUsers() {
+        try {
+            const users = await this.prisma.user.findMany();
+            return users;
+        } catch (error) {
+            console.error(error);
+            throw new Error('Could not find users');
         }
     }
 

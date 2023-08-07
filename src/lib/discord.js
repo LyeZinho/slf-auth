@@ -7,7 +7,7 @@ function getAuthUrl() {
     client_id: discordClientId,
     redirect_uri: discordRedirectUri,
     response_type: 'code',
-    scope: 'identify', // Add more scopes if needed
+    scope: 'identify email', // Add more scopes if needed
   });
 
   return `https://discord.com/api/oauth2/authorize?${queryParams}`;
