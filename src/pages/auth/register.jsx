@@ -11,6 +11,7 @@ import { useState } from "react";
 import { GrCircleInformation,  } from "react-icons/gr";
 import { BsFillDice2Fill } from "react-icons/bs";
 import { BiLogoDiscordAlt, BiLogoGithub, BiLogoGoogle } from "react-icons/bi";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 
 /*
@@ -31,10 +32,10 @@ function PasswordCheck({ passwordLength, passwordLowercase, passwordUppercase, p
   const check = (condition, text) => (
     <div className={`flex flex-row items-center justify-left ${ condition ? "text-green-500" : "text-red-500" }`}>
       <div className="p-1">
-        <GrCircleInformation className={`${condition ? "text-green-500" : "text-red-500"}`}/>
+        <GrCircleInformation className={`text-white`}/>
       </div>
       <div className="p-1">
-        <h1 className="text-sm">{text}</h1>
+        <h1 className="text-sm font-bold">{text}</h1>
       </div>
     </div>
   );
@@ -51,8 +52,8 @@ function PasswordCheck({ passwordLength, passwordLowercase, passwordUppercase, p
 }
 
 export default function Register({ jwt_secret }) {
-  async function register(username, email, password) {
-    const jwt = generateJWT({ username, email, password }, jwt_secret);
+  async function register(email, password) {
+    const jwt = generateJWT({ email, password }, jwt_secret);
     const res = await fetch("/api/user/register", {
       method: "POST",
       headers: {
@@ -66,7 +67,6 @@ export default function Register({ jwt_secret }) {
   }
 
   // Input states
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -113,10 +113,6 @@ export default function Register({ jwt_secret }) {
   }
 
   // Imput handlers
-  function handleUsernameChange(e) {
-    setUsername(e.target.value);
-  }
-
   function handleEmailChange(e) {
     setEmail(e.target.value);
   }
@@ -154,7 +150,7 @@ export default function Register({ jwt_secret }) {
       return;
     }
 
-    register(username, email, password).then((data) => {
+    register(email, password).then((data) => {
       if (data.error) {
         setAlertText(data.error);
       } else {
@@ -172,7 +168,7 @@ export default function Register({ jwt_secret }) {
     <div className="flex flex-col items-center justify-center my-20">
       {/* Alert */}
       <div id="alert" className="flex flex-col items-center justify-center hidden">
-        <Alert color="blue" className="fixed bottom-0 left-0 m-4 w-96 z-50">
+        <Alert color="blue" className="fixed bottom-0 left-0 m-4 w-96 z-50 bg-primary-500 p-4 rounded-lg">
           <div className="flex flex-row items-center justify-center space-x-2">
             <GrCircleInformation />
             <span className="text-lg font-bold">{alert}</span>
@@ -186,6 +182,20 @@ export default function Register({ jwt_secret }) {
       md:w-2/3
       sm:w-11/12
       ">
+        {/* Go Back button */}
+        <div className="flex flex-row items-left justify-center">
+            <div className="flex flex-1 items-left justify-center">
+                <Button
+                    className="p-2 bg-primary-500 hover:bg-primary-600 transition duration-500 ease-in-out rounded-lg"
+                    onClick={() => {
+                        window.location.href = "/";
+                    }}
+                >
+                    <h1 className="text-lg font-bold">Go Back</h1>
+                </Button>
+            </div>
+        </div>
+        
         {/* Logo */}
         <div className="flex flex-col items-center justify-center">
             <Image
@@ -203,16 +213,6 @@ export default function Register({ jwt_secret }) {
         </div>
 
         <div className="flex flex-col items-left justify-center space-y-4">
-          <div className="flex flex-col items-left justify-center">
-            <span className="text-lg">Username</span>
-            <Input
-              type="text"
-              placeholder="my username here"
-              className="my-2 outline-none text-primary-700 rounded-lg p-2 border-2 w-11/12"
-              onChange={handleUsernameChange}
-            />
-          </div>
-
           <div className="flex flex-col items-left justify-center">
             <span className="text-lg">Email</span>
             <Input
@@ -338,6 +338,7 @@ export async function getServerSideProps(context) {
     // Replace later with a more secure method
     // Send the secret for client isn't a secure method
     // Maybe can use an asymmetric encryption for encriptation the jwt token
+    // Research about this
   let jtw_secret = process.env.JWT_SECRET;
 
   return {

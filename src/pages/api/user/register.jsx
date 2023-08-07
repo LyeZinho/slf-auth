@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         console.log(decoded);
         const confirmToken = generateConfirmToken();
 
-        const user = await userRegister(decoded.username, decoded.password, decoded.email, confirmToken);
+        const user = await userRegister(decoded.password, decoded.email, confirmToken);
 
         if (user.error) {
             res.status(400).json({ error: user.error });

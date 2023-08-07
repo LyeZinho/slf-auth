@@ -113,6 +113,10 @@ model Session {
   userId    String
   user      User     @relation(fields: [userId], references: [id])
 
+  // Context
+  ip        String?
+  userAgent String?
+
   // Opposite relation field
   @@index([userId], name: "user_sessions")
 }
