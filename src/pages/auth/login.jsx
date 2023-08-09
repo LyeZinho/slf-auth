@@ -204,7 +204,10 @@ export default function Login({ jwt }) {
 
 export async function getServerSideProps(context) {
   const session = context.req.cookies.session;
-  const jwt = process.env.JWT_SECRET;
+  const jwt = process.env.JWT_SECRET; 
+  // Get headers
+  const headers = context.req.headers;
+  console.log(headers);
 
   // if (session) {
   //   return {

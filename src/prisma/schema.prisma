@@ -102,6 +102,7 @@ model User {
 
   // Opposite relation field
   sessions Session[]
+  apiKeys  ApiKey[]
 }
 
 model Session {
@@ -119,4 +120,36 @@ model Session {
 
   // Opposite relation field
   @@index([userId], name: "user_sessions")
+}
+
+model ApiKey {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  key       String   @unique
+  userId    String
+
+  // Opposite relation field
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Aplication {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  secret    String   @unique
+  baseUrl   String
+  redirectUri String
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  secret    String   @unique
+  baseUrl   String
+  redirectUri String
 }
