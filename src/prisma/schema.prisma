@@ -17,6 +17,9 @@ datasource db {
 // 
 // --------------------------------------
 
+
+// USER MODELS
+
 model User {
   id        String    @id @default(uuid())
   createdAt DateTime  @default(now())
@@ -134,15 +137,8 @@ model ApiKey {
   user      User     @relation(fields: [userId], references: [id])
 }
 
-model Aplication {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String   @unique
-  secret    String   @unique
-  baseUrl   String
-  redirectUri String
-}
+
+// ADMIN MODELS
 
 model Admin {
   id        String   @id @default(uuid())
@@ -150,6 +146,39 @@ model Admin {
   updatedAt DateTime @updatedAt
   name      String   @unique
   secret    String   @unique
+  adminHash String   @unique
   baseUrl   String
   redirectUri String
+
+  // Opposite relation field
+  sessions AdminSession[]
+}
+
+model Aplication {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  secret    String   @unique
+  jwtSecret String   @unique
+  encriptionKey String
+  baseUrl   String
+  redirectUri String
+}
+
+model AdminSession {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  expiresAt DateTime
+  handle    String   @unique
+  adminId   String
+  admin     Admin    @relation(fields: [adminId], references: [id])
+
+  // Context
+  ip        String?
+  userAgent String?
+
+  // Opposite relation field
+  @@index([adminId], name: "admin_adminSessions")
 }
