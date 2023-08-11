@@ -3,7 +3,7 @@ function generateStrongPassword(length = 12, ...charTypes) {
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         "abcdefghijklmnopqrstuvwxyz",
         "0123456789",
-        "!@#$%^&*()-_=+[]{}|;:,.<>?"
+        "!@#$%^&*()-_=+[]{}|;:,.<>?",
     ];
 
     const allowedChars = charTypes.reduce((acc, type, index) => {

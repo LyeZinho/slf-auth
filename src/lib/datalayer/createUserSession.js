@@ -12,11 +12,11 @@
     
 */ 
 
-const SessionRepository = require("../dbacess/session");
+const UserSessionRepository = require("../../dbacess/usersession");
 const { generateToken } = require("./genhash");
 
-async function createSession(user, ip, userAgent) {
-    const sessionRepository = new SessionRepository();
+async function createUserSession(user, ip, userAgent) {
+    const sessionRepository = new UserSessionRepository();
     const handle = generateToken();
     const session = await sessionRepository.create({
         userId: user.id,
@@ -28,4 +28,4 @@ async function createSession(user, ip, userAgent) {
     return session;
 }
 
-module.exports = createSession;
+module.exports = createUserSession;

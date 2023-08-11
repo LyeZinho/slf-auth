@@ -147,8 +147,7 @@ model Admin {
   name      String   @unique
   secret    String   @unique
   adminHash String   @unique
-  baseUrl   String
-  redirectUri String
+  salt      String   @unique
 
   // Opposite relation field
   sessions AdminSession[]

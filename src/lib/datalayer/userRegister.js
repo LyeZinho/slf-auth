@@ -1,7 +1,7 @@
 // Register
-import UserRepository from '../dbacess/user';
-import { generateHash, encrypt } from './genhash';
-import { generateKeyPair } from './pkytpky';
+import UserRepository from '../../dbacess/user';
+import { generateHash, encrypt } from '../encript/genhash';
+import { generateKeyPair } from '../encript/pkytpky';
 
 const userRepository = new UserRepository();
 
@@ -13,11 +13,11 @@ async function userRegister(password, email, confirmToken) {
     const encryptedSalt = encrypt(salt, process.env.ENCRIPTATION_KEY)
     const encryptedEmail = encrypt(email, process.env.ENCRIPTATION_KEY)
     const encryptedPrivateKey = encrypt(privateKey, process.env.ENCRIPTATION_KEY)
-    const user = await userRepository.getUserByField('email', encryptedEmail);
+    const user = await userRepository.findByField('email', encryptedEmail);
 
     if (user) return { error: 'User already exists' }
     else {
-        const user = await userRepository.createUser({
+        const user = await userRepository.create({
             email: encryptedEmail,
             userHash: encryptedHash,
             confirmToken: confirmToken,

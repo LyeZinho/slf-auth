@@ -1,7 +1,7 @@
 // Import userRegister
 import userRegister from '../../../lib/userregister';
-const generateConfirmToken = require('../../../lib/genconfirmtoken');
-const { generateJWT, verifyJWT } = require('../../../lib/jwt');
+const generateConfirmToken = require('../../../lib/encript/genconfirmtoken');
+const { generateJWT, verifyJWT } = require('../../../lib/encript/jwt');
 /*
 POST 
 {

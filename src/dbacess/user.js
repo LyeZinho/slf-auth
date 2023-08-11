@@ -84,7 +84,7 @@ class UserRepository {
         this.prisma = new PrismaClient();
     }
 
-    async createUser(user) {
+    async create(user) {
         try {
             const createdUser = await this.prisma.user.create({
                 data: user,
@@ -96,7 +96,7 @@ class UserRepository {
         }
     }
 
-    async getUserById(id) {
+    async getById(id) {
         try {
             const user = await this.prisma.user.findUnique({
                 where: { id },
@@ -108,7 +108,7 @@ class UserRepository {
         }
     }
 
-    async getUserByField(field, value) {
+    async findByField(field, value) {
         try {
             const user = await this.prisma.user.findUnique({
                 where: { [field]: value },
@@ -120,7 +120,7 @@ class UserRepository {
         }
     }
 
-    async getUserByCustomQuery(query) {
+    async getByCustomQuery(query) {
         try {
             const user = await this.prisma.user.findMany(query);
             return user;
@@ -140,7 +140,7 @@ class UserRepository {
         }
     }
 
-    async updateUser(id, data) {
+    async update(id, data) {
         try {
             const updatedUser = await this.prisma.user.update({
                 where: { id },
@@ -153,7 +153,7 @@ class UserRepository {
         }
     }
 
-    async deleteUser(id) {
+    async delete(id) {
         try {
             const deletedUser = await this.prisma.user.delete({
                 where: { id },
@@ -167,4 +167,3 @@ class UserRepository {
 }
 
 module.exports = UserRepository;
-

@@ -1,10 +1,10 @@
-const UserRepository = require("../dbacess/user");
+const UserRepository = require("../../dbacess/user");
 const { compareHash, decrypt, encrypt, } = require("./genhash");
 
 async function login(email, password) {
   let userRepository = new UserRepository();
   let encryptedEmail = encrypt(email, process.env.ENCRIPTATION_KEY);
-  let user = await userRepository.getUserByField("email", encryptedEmail);
+  let user = await userRepository.findByField("email", encryptedEmail);
   if (!user) {
     return {
       error: "User not found",

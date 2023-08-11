@@ -97,7 +97,7 @@ model User {
 
 const { PrismaClient } = require('@prisma/client');
 
-class SessionRepository {
+class UserSessionRepository {
   constructor() {
     this.prisma = new PrismaClient();
   } 
@@ -144,4 +144,4 @@ class SessionRepository {
 
 
 
-module.exports = SessionRepository;
+module.exports = UserSessionRepository;
