@@ -60,7 +60,6 @@ async function login(email, password, jwt) {
 
 export default function Login({ jwt }) {
   const [alert, setAlert] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -207,7 +206,6 @@ export async function getServerSideProps(context) {
   const jwt = process.env.JWT_SECRET; 
   // Get headers
   const headers = context.req.headers;
-  console.log(headers);
 
   // if (session) {
   //   return {
