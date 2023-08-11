@@ -13,7 +13,7 @@
 */ 
 
 const UserSessionRepository = require("../../dbacess/usersession");
-const { generateToken } = require("./genhash");
+const { generateToken } = require("../encript/genhash");
 
 async function createUserSession(user, ip, userAgent) {
     const sessionRepository = new UserSessionRepository();

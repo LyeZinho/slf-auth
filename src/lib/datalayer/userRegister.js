@@ -29,5 +29,4 @@ async function userRegister(password, email, confirmToken) {
     }
 }
 
-
 export default userRegister;

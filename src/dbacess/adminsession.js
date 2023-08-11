@@ -15,51 +15,70 @@ model AdminSession {
   // Opposite relation field
   @@index([adminId], name: "admin_adminSessions")
 }
-*/ 
+*/const { PrismaClient } = require('@prisma/client');
+
 class AdminSessionRepository {
-    constructor(prisma) {
-        this.prisma = prisma;
+    constructor() {
+        this.prisma = new PrismaClient();
     }
 
-    async create(adminSessionData) {
-        const adminSession = await this.prisma.adminSession.create({
-            data: adminSessionData,
+    async create(sessionData) {
+        const session = await this.prisma.adminSession.create({
+            data: sessionData,
         });
-        return adminSession;
+        return session;
     }
 
     async findById(id) {
-        const adminSession = await this.prisma.adminSession.findUnique({
+        const session = await this.prisma.adminSession.findUnique({
             where: { id },
             include: { admin: true },
         });
-        return adminSession;
+        return session;
     }
 
     async findByHandle(handle) {
-        const adminSession = await this.prisma.adminSession.findUnique({
+        const session = await this.prisma.adminSession.findUnique({
             where: { handle },
             include: { admin: true },
         });
-        return adminSession;
+        return session;
     }
 
-    async update(id, adminSessionData) {
-        const adminSession = await this.prisma.adminSession.update({
+    async update(id, sessionData) {
+        const session = await this.prisma.adminSession.update({
             where: { id },
-            data: adminSessionData,
+            data: sessionData,
             include: { admin: true },
         });
-        return adminSession;
+        return session;
     }
 
     async delete(id) {
-        const adminSession = await this.prisma.adminSession.delete({
+        const session = await this.prisma.adminSession.delete({
             where: { id },
-            include: { admin: true },
         });
-        return adminSession;
+        return session;
     }
 }
 
-module.exports = AdminSessionRepository;
+// Test
+function test() {
+    const adminSessionRepository = new AdminSessionRepository();
+
+    // Create
+    const sessionData = {
+        handle: 'test-session',
+        adminId: 'test-admin',
+        expiresAt: new Date(),
+    };
+
+    adminSessionRepository.create(sessionData).then((session) => {
+        console.log('Created session:');
+        console.log(session);
+    });
+}
+
+test();
+
+// module.exports = AdminSessionRepository;
