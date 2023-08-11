@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { verifyJWT, generateJWT  } from "../../lib/jwt";
+import { verifyJWT, generateJWT  } from "../../lib/encript/jwt";
 
 import { Input, Alert, Button, IconButton } from "@material-tailwind/react";
 import { GrCircleInformation } from "react-icons/gr";

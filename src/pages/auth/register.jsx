@@ -1,9 +1,9 @@
-import { generateJWT } from "../../lib/jwt";
+import { generateJWT } from "../../lib/encript/jwt";
 import { Input, Alert, Button, IconButton } from "@material-tailwind/react";
 import { Progress } from "@material-tailwind/react";
 import Image from "next/image";
 
-const generateStrongPassword = require("../../lib/genstrongpass");
+const generateStrongPassword = require("../../lib/misc/genstrongpass");
 
 import { useState } from "react";
 
