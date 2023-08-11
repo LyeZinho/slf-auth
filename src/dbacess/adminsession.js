@@ -81,4 +81,4 @@ function test() {
 
 test();
 
-// module.exports = AdminSessionRepository;
+module.exports = AdminSessionRepository;
